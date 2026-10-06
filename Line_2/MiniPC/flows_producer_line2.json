@@ -57,6 +57,31 @@
         "h": 202
     },
     {
+        "id": "8a98adf556d1c049",
+        "type": "group",
+        "z": "ffceba5a227c1800",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "801eade76630af9d",
+            "82bd6009afde1104",
+            "e98e2c6ba409bbc1",
+            "787c33753c26c54f",
+            "c678556bc4864b67"
+        ],
+        "x": 254,
+        "y": 919,
+        "w": 752,
+        "h": 142
+    },
+    {
         "id": "8d8fd40ea32038ac",
         "type": "serial-port",
         "name": "AnalyticalScale_Line2",
@@ -141,7 +166,7 @@
         "id": "dc02ab851ad4917c",
         "type": "serial-port",
         "name": "MoistureAnalyzer_Line2",
-        "serialport": "/dev/ttyUSB2",
+        "serialport": "/dev/MA_Line2",
         "serialbaud": "9600",
         "databits": 8,
         "parity": "none",
@@ -421,7 +446,105 @@
         "wires": []
     },
     {
-        "id": "a735f9ca3e3d71e6",
+        "id": "801eade76630af9d",
+        "type": "serial in",
+        "z": "ffceba5a227c1800",
+        "d": true,
+        "g": "8a98adf556d1c049",
+        "name": "",
+        "serial": "",
+        "x": 330,
+        "y": 1020,
+        "wires": [
+            [
+                "82bd6009afde1104",
+                "e98e2c6ba409bbc1"
+            ]
+        ]
+    },
+    {
+        "id": "82bd6009afde1104",
+        "type": "debug",
+        "z": "ffceba5a227c1800",
+        "d": true,
+        "g": "8a98adf556d1c049",
+        "name": "Leak_Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "e98e2c6ba409bbc1",
+        "type": "function",
+        "z": "ffceba5a227c1800",
+        "d": true,
+        "g": "8a98adf556d1c049",
+        "name": "Parsing_Leak",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 1020,
+        "wires": [
+            [
+                "c678556bc4864b67",
+                "787c33753c26c54f"
+            ]
+        ]
+    },
+    {
+        "id": "787c33753c26c54f",
+        "type": "mqtt out",
+        "z": "ffceba5a227c1800",
+        "d": true,
+        "g": "8a98adf556d1c049",
+        "name": "",
+        "topic": "ipc/line3/Leak",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a89288ed06458ce9",
+        "x": 880,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "c678556bc4864b67",
+        "type": "debug",
+        "z": "ffceba5a227c1800",
+        "d": true,
+        "g": "8a98adf556d1c049",
+        "name": "ParsingDebug5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "c34fe176e1c5d52e",
         "type": "global-config",
         "env": [],
         "modules": {

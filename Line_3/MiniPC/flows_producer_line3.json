@@ -57,8 +57,8 @@
             "f04821cc2261a6a7"
         ],
         "x": 214,
-        "y": 899,
-        "w": 852,
+        "y": 839,
+        "w": 772,
         "h": 202
     },
     {
@@ -110,9 +110,34 @@
             "b528b8fa7d271767"
         ],
         "x": 214,
-        "y": 659,
+        "y": 619,
         "w": 812,
         "h": 202
+    },
+    {
+        "id": "abefde91b2d2dc48",
+        "type": "group",
+        "z": "60fec81f96309e5d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "15c2b25dd52c2f1b",
+            "f2596d6764a1f549",
+            "313fbd0d9c6d64a6",
+            "d2634f95abef8864",
+            "9367972edf7848e7"
+        ],
+        "x": 214,
+        "y": 1059,
+        "w": 752,
+        "h": 142
     },
     {
         "id": "8d8fd40ea32038ac",
@@ -387,13 +412,15 @@
         "z": "60fec81f96309e5d",
         "d": true,
         "g": "d57beefe9e3d2624",
-        "name": "",
+        "name": "Disintegration_Line3",
         "serial": "",
-        "x": 290,
-        "y": 1000,
+        "x": 330,
+        "y": 940,
         "wires": [
             [
-                "2ffd27db84f78d30"
+                "2ffd27db84f78d30",
+                "33bef180dbba1772",
+                "19d3995a6bb33f2f"
             ]
         ]
     },
@@ -412,8 +439,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
-        "y": 940,
+        "x": 580,
+        "y": 880,
         "wires": []
     },
     {
@@ -424,8 +451,8 @@
         "g": "d57beefe9e3d2624",
         "name": "",
         "serial": "",
-        "x": 570,
-        "y": 1060,
+        "x": 530,
+        "y": 1000,
         "wires": []
     },
     {
@@ -442,8 +469,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 1000,
+        "x": 580,
+        "y": 940,
         "wires": [
             [
                 "f04821cc2261a6a7",
@@ -467,8 +494,8 @@
         "correl": "",
         "expiry": "",
         "broker": "a89288ed06458ce9",
-        "x": 940,
-        "y": 1000,
+        "x": 860,
+        "y": 940,
         "wires": []
     },
     {
@@ -477,7 +504,7 @@
         "z": "60fec81f96309e5d",
         "d": true,
         "g": "d57beefe9e3d2624",
-        "name": "ParsingDebug3",
+        "name": "ParsingDebug4",
         "active": false,
         "tosidebar": true,
         "console": false,
@@ -486,8 +513,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 920,
-        "y": 940,
+        "x": 840,
+        "y": 880,
         "wires": []
     },
     {
@@ -613,7 +640,7 @@
         "base64": false,
         "tls": "",
         "x": 320,
-        "y": 760,
+        "y": 720,
         "wires": [
             [
                 "1af4d6c3ab3378fc",
@@ -636,7 +663,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 570,
-        "y": 700,
+        "y": 660,
         "wires": []
     },
     {
@@ -653,7 +680,7 @@
         "finalize": "",
         "libs": [],
         "x": 570,
-        "y": 760,
+        "y": 720,
         "wires": [
             [
                 "12387ef746e18fff",
@@ -678,7 +705,7 @@
         "expiry": "",
         "broker": "a89288ed06458ce9",
         "x": 850,
-        "y": 760,
+        "y": 720,
         "wires": []
     },
     {
@@ -686,7 +713,7 @@
         "type": "debug",
         "z": "60fec81f96309e5d",
         "g": "7047f92b313ecd69",
-        "name": "ParsingDebug4",
+        "name": "ParsingDebug3",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -696,7 +723,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 840,
-        "y": 700,
+        "y": 660,
         "wires": []
     },
     {
@@ -753,7 +780,7 @@
         "rpcTimeoutMilliseconds": 3000,
         "outputs": 0,
         "x": 880,
-        "y": 820,
+        "y": 780,
         "wires": []
     },
     {
@@ -783,7 +810,105 @@
         ]
     },
     {
-        "id": "4d5c3686f3d18f2c",
+        "id": "15c2b25dd52c2f1b",
+        "type": "serial in",
+        "z": "60fec81f96309e5d",
+        "d": true,
+        "g": "abefde91b2d2dc48",
+        "name": "LeakTester_Line3",
+        "serial": "",
+        "x": 330,
+        "y": 1160,
+        "wires": [
+            [
+                "f2596d6764a1f549",
+                "313fbd0d9c6d64a6"
+            ]
+        ]
+    },
+    {
+        "id": "f2596d6764a1f549",
+        "type": "debug",
+        "z": "60fec81f96309e5d",
+        "d": true,
+        "g": "abefde91b2d2dc48",
+        "name": "Leak_Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "313fbd0d9c6d64a6",
+        "type": "function",
+        "z": "60fec81f96309e5d",
+        "d": true,
+        "g": "abefde91b2d2dc48",
+        "name": "Parsing_Leak",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1160,
+        "wires": [
+            [
+                "9367972edf7848e7",
+                "d2634f95abef8864"
+            ]
+        ]
+    },
+    {
+        "id": "d2634f95abef8864",
+        "type": "mqtt out",
+        "z": "60fec81f96309e5d",
+        "d": true,
+        "g": "abefde91b2d2dc48",
+        "name": "",
+        "topic": "ipc/line3/Leak",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a89288ed06458ce9",
+        "x": 840,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "9367972edf7848e7",
+        "type": "debug",
+        "z": "60fec81f96309e5d",
+        "d": true,
+        "g": "abefde91b2d2dc48",
+        "name": "ParsingDebug5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "91423728160f8fc6",
         "type": "global-config",
         "env": [],
         "modules": {
