@@ -1,0 +1,782 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "E-IPC",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "18abbb586b285685",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "g": "e0cfaa779559f17e",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#767676"
+        },
+        "nodes": [
+            "933b73d4960562c6",
+            "b361b4a8ce8b2b35",
+            "39081536c026e2ae",
+            "5d70b19c0b0c5f04",
+            "9c5c16d3f62c7fe9",
+            "91b4c1407e62f6d5",
+            "8e0a35bb10782053",
+            "be9a4f1124c94236",
+            "c1b9fda50fbeda5c",
+            "9571bbcdd2cd942c"
+        ],
+        "x": 334,
+        "y": 319,
+        "w": 792,
+        "h": 262
+    },
+    {
+        "id": "37b33711066aeb79",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "g": "e0cfaa779559f17e",
+        "name": "",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "f61396b4c29f0877",
+            "f46e3420aebc47d7",
+            "c2f059d3caf9f70d",
+            "504de7385f7bca1b",
+            "099c4473a0e5f682",
+            "763f5fc0317946e5"
+        ],
+        "x": 334,
+        "y": 99,
+        "w": 712,
+        "h": 202
+    },
+    {
+        "id": "568f007818cbace4",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "g": "e0cfaa779559f17e",
+        "style": {
+            "stroke": "#555555",
+            "stroke-opacity": "1",
+            "fill": "#ffffff",
+            "fill-opacity": "0.03",
+            "label": true,
+            "label-position": "nw",
+            "color": "#f0f0f0"
+        },
+        "nodes": [
+            "2a28ee880ccd994a",
+            "2ad5879a520ae89a",
+            "5315842b3d7a5755",
+            "effeabf9ec3db857",
+            "eipc_consumer_scale",
+            "pg_query_scale",
+            "debug_pg",
+            "4fad884376c86017",
+            "13ac28a8d030530c",
+            "465958bb0cbabfbc"
+        ],
+        "x": 334,
+        "y": 599,
+        "w": 812,
+        "h": 262
+    },
+    {
+        "id": "e0cfaa779559f17e",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "name": "Line 3",
+        "style": {
+            "stroke": "#ff0000",
+            "fill": "#ffffff",
+            "label": true,
+            "label-position": "n"
+        },
+        "nodes": [
+            "18abbb586b285685",
+            "37b33711066aeb79",
+            "568f007818cbace4"
+        ],
+        "x": 308,
+        "y": 73,
+        "w": 864,
+        "h": 814
+    },
+    {
+        "id": "4567ba8ed9fb9668",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "10.127.17.16",
+        "port": "1884",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0c36f517f3138191",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "10.126.15.138",
+        "port": "3306",
+        "db": "test",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "13f8890d34b22088",
+        "type": "amqp-broker",
+        "name": "",
+        "host": "10.127.17.16",
+        "port": 5672,
+        "vhost": "",
+        "tls": false,
+        "credsFromSettings": false
+    },
+    {
+        "id": "821acc5d583ace6a",
+        "type": "postgreSQLConfig",
+        "name": "",
+        "host": "127.0.0.1",
+        "hostFieldType": "str",
+        "port": 5432,
+        "portFieldType": "num",
+        "database": "postgres",
+        "databaseFieldType": "str",
+        "ssl": "true",
+        "sslFieldType": "bool",
+        "applicationName": "",
+        "applicationNameType": "str",
+        "max": 10,
+        "maxFieldType": "num",
+        "idle": 1000,
+        "idleFieldType": "num",
+        "connectionTimeout": 10000,
+        "connectionTimeoutFieldType": "num",
+        "userFieldType": "cred",
+        "userEnv": "",
+        "passwordFieldType": "cred",
+        "passwordEnv": ""
+    },
+    {
+        "id": "7df7d630690f4e21",
+        "type": "postgreSQLConfig",
+        "name": "",
+        "host": "10.127.17.16",
+        "hostFieldType": "str",
+        "port": 5432,
+        "portFieldType": "num",
+        "database": "ems_saka",
+        "databaseFieldType": "str",
+        "ssl": "false",
+        "sslFieldType": "bool",
+        "applicationName": "",
+        "applicationNameType": "str",
+        "max": 10,
+        "maxFieldType": "num",
+        "idle": 1000,
+        "idleFieldType": "num",
+        "connectionTimeout": 10000,
+        "connectionTimeoutFieldType": "num",
+        "userFieldType": "cred",
+        "userEnv": "",
+        "passwordFieldType": "cred",
+        "passwordEnv": ""
+    },
+    {
+        "id": "933b73d4960562c6",
+        "type": "mysql",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "mydb": "0c36f517f3138191",
+        "name": "",
+        "x": 990,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f61396b4c29f0877",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "g": "37b33711066aeb79",
+        "name": "Buat tabel SQL",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 460,
+        "y": 200,
+        "wires": [
+            [
+                "f46e3420aebc47d7",
+                "c2f059d3caf9f70d",
+                "504de7385f7bca1b",
+                "099c4473a0e5f682"
+            ]
+        ]
+    },
+    {
+        "id": "f46e3420aebc47d7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "37b33711066aeb79",
+        "name": "Create_HardnessTable",
+        "func": "msg.topic = `\n    CREATE TABLE IF NOT EXISTS ipc_hardness_line3 (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        created_date DATE,\n        created_time TIME,\n        operator_name VARCHAR(50),\n        instrument_code VARCHAR(100),\n        product_name VARCHAR(100),\n        method_name VARCHAR(50),\n        batch_number VARCHAR(50),\n        time_series INT,\n        hardness_kp FLOAT,\n        diameter_mm FLOAT,\n        thickness_mm FLOAT,\n        status VARCHAR(10) DEFAULT 'N'\n    );\n`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 140,
+        "wires": [
+            [
+                "763f5fc0317946e5"
+            ]
+        ]
+    },
+    {
+        "id": "b361b4a8ce8b2b35",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "",
+        "topic": "ipc/line3/hardness",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4567ba8ed9fb9668",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 450,
+        "y": 360,
+        "wires": [
+            [
+                "39081536c026e2ae"
+            ]
+        ]
+    },
+    {
+        "id": "39081536c026e2ae",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "INSERT INTO ipc_hardness",
+        "func": "let data = msg.payload;\nif (typeof data === 'string') {\n    data = JSON.parse(data);\n}\n\nmsg.topic = \"INSERT INTO ipc_hardness_line3 (created_date, created_time, operator_name, instrument_code, product_name, method_name, batch_number, time_series, hardness_kp, diameter_mm, thickness_mm, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\";\n\nmsg.payload = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.product_name,\n    data.method_name,\n    data.batch_number,\n    data.time_series,\n    data.hardness_kp,\n    data.diameter_mm,\n    data.thickness_mm,\n    data.status\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 360,
+        "wires": [
+            [
+                "933b73d4960562c6",
+                "9571bbcdd2cd942c"
+            ]
+        ]
+    },
+    {
+        "id": "c2f059d3caf9f70d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "37b33711066aeb79",
+        "name": "Create_MoistureTable",
+        "func": "msg.topic = `\n    CREATE TABLE IF NOT EXISTS ipc_moisture_line3 (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        created_date DATE NOT NULL,\n        created_time TIME NOT NULL,\n        operator_name VARCHAR(50),\n        instrument_code VARCHAR(50),\n        snr_unit VARCHAR(50),\n        product_name VARCHAR(100),\n        batch_number VARCHAR(50),\n        start_weight FLOAT,\n        end_weight FLOAT,\n        moisture_mc FLOAT,\n        duration_min VARCHAR(20),\n        status VARCHAR(10),\n        raw_data TEXT\n    );\n`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 180,
+        "wires": [
+            [
+                "763f5fc0317946e5"
+            ]
+        ]
+    },
+    {
+        "id": "504de7385f7bca1b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "37b33711066aeb79",
+        "name": "Create_ScaleTable",
+        "func": "msg.topic = `\n    CREATE TABLE IF NOT EXISTS ipc_scale_line3 (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        created_date DATE NOT NULL,\n        created_time TIME NOT NULL,\n        instrument_code VARCHAR(50),\n        snr_unit VARCHAR(50),\n        batch_number VARCHAR(50),\n        time_series INT,\n        weight_value FLOAT,\n        status VARCHAR(10) DEFAULT 'N'\n    );\n`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 220,
+        "wires": [
+            [
+                "763f5fc0317946e5"
+            ]
+        ]
+    },
+    {
+        "id": "099c4473a0e5f682",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "37b33711066aeb79",
+        "name": "Create_DisintegrationTable",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "763f5fc0317946e5"
+            ]
+        ]
+    },
+    {
+        "id": "763f5fc0317946e5",
+        "type": "mysql",
+        "z": "f6f2187d.f17ca8",
+        "g": "37b33711066aeb79",
+        "mydb": "0c36f517f3138191",
+        "name": "",
+        "x": 970,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d70b19c0b0c5f04",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "",
+        "topic": "ipc/line3/scale",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4567ba8ed9fb9668",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 430,
+        "y": 420,
+        "wires": [
+            [
+                "9c5c16d3f62c7fe9"
+            ]
+        ]
+    },
+    {
+        "id": "9c5c16d3f62c7fe9",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "INSERT INTO ipc_scale",
+        "func": "let data = msg.payload;\nif (typeof data === 'string') data = JSON.parse(data);\n\nmsg.topic = \"INSERT INTO ipc_scale_line3 (created_date, created_time, instrument_code, snr_unit, batch_number, time_series, weight_value, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)\";\n\nmsg.payload = [\n    data.created_date,\n    data.created_time,\n    data.instrument_code,\n    data.snr_unit,\n    data.batch_number,\n    data.time_series,\n    data.weight_value,\n    data.status\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 420,
+        "wires": [
+            [
+                "933b73d4960562c6",
+                "9571bbcdd2cd942c"
+            ]
+        ]
+    },
+    {
+        "id": "91b4c1407e62f6d5",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "",
+        "topic": "ipc/line3/moisture",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4567ba8ed9fb9668",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "8e0a35bb10782053"
+            ]
+        ]
+    },
+    {
+        "id": "8e0a35bb10782053",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "INSERT INTO ipc_moisture",
+        "func": "let data = msg.payload;\nif (typeof data === 'string') {\n    data = JSON.parse(data);\n}\n\n// Menyiapkan 13 tanda tanya (?)\nmsg.topic = \"INSERT INTO ipc_moisture_line3 (created_date, created_time, operator_name, instrument_code, snr_unit, product_name, batch_number, start_weight, end_weight, moisture_mc, duration_min, status, raw_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\";\n\nmsg.payload = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.snr_unit,\n    data.product_name,\n    data.batch_number,\n    data.start_weight,\n    data.end_weight,\n    data.moisture_mc,\n    data.duration_min,\n    data.status,\n    data.raw_data\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 480,
+        "wires": [
+            [
+                "933b73d4960562c6",
+                "9571bbcdd2cd942c"
+            ]
+        ]
+    },
+    {
+        "id": "be9a4f1124c94236",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "",
+        "topic": "ipc/line3/disintegration",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4567ba8ed9fb9668",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 460,
+        "y": 540,
+        "wires": [
+            [
+                "c1b9fda50fbeda5c"
+            ]
+        ]
+    },
+    {
+        "id": "c1b9fda50fbeda5c",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "INSERT INTO ipc_disintegration",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 540,
+        "wires": [
+            [
+                "933b73d4960562c6",
+                "9571bbcdd2cd942c"
+            ]
+        ]
+    },
+    {
+        "id": "9571bbcdd2cd942c",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "g": "18abbb586b285685",
+        "name": "INSERTDebug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2a28ee880ccd994a",
+        "type": "amqp-in",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "Queue_Moisture",
+        "broker": "13f8890d34b22088",
+        "prefetch": 0,
+        "noAck": true,
+        "exchangeName": "",
+        "exchangeType": "direct",
+        "exchangeRoutingKey": "",
+        "exchangeDurable": true,
+        "queueName": "ems_queue_moisture",
+        "queueExclusive": false,
+        "queueDurable": true,
+        "queueAutoDelete": false,
+        "headers": "{}",
+        "x": 440,
+        "y": 640,
+        "wires": [
+            [
+                "5315842b3d7a5755",
+                "4fad884376c86017"
+            ]
+        ]
+    },
+    {
+        "id": "2ad5879a520ae89a",
+        "type": "amqp-in",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "Queue_Hardness",
+        "broker": "13f8890d34b22088",
+        "prefetch": 0,
+        "noAck": true,
+        "exchangeName": "",
+        "exchangeType": "direct",
+        "exchangeRoutingKey": "",
+        "exchangeDurable": true,
+        "queueName": "ems_queue_hardness",
+        "queueExclusive": false,
+        "queueDurable": true,
+        "queueAutoDelete": false,
+        "headers": "{}",
+        "x": 440,
+        "y": 700,
+        "wires": [
+            [
+                "effeabf9ec3db857",
+                "4fad884376c86017"
+            ]
+        ]
+    },
+    {
+        "id": "5315842b3d7a5755",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "Moisture Query",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_moisture_line3 (created_date, created_time, operator_name, instrument_code, snr_unit, product_name, batch_number, start_weight, end_weight, moisture_mc, duration_min, status, raw_data) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)\";\n\n// INI YANG KRUSIAL: Wajib pakai msg.params, BUKAN msg.payload\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.snr_unit,\n    data.product_name,\n    data.batch_number,\n    data.start_weight,\n    data.end_weight,\n    data.moisture_mc,\n    data.duration_min,\n    data.status,\n    data.raw_data\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 640,
+        "wires": [
+            [
+                "debug_pg",
+                "13ac28a8d030530c"
+            ]
+        ]
+    },
+    {
+        "id": "effeabf9ec3db857",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "Hardness Query",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_hardness_line3 (created_date, created_time, operator_name, instrument_code, product_name, method_name, batch_number, time_series, hardness_kp, diameter_mm, thickness_mm, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)\";\n\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.product_name,\n    data.method_name,\n    data.batch_number,\n    data.time_series,\n    data.hardness_kp,\n    data.diameter_mm,\n    data.thickness_mm,\n    data.status\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 700,
+        "wires": [
+            [
+                "debug_pg",
+                "13ac28a8d030530c"
+            ]
+        ]
+    },
+    {
+        "id": "eipc_consumer_scale",
+        "type": "amqp-in",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "Queue_Scale",
+        "broker": "13f8890d34b22088",
+        "prefetch": 0,
+        "noAck": true,
+        "exchangeName": "",
+        "exchangeType": "direct",
+        "exchangeRoutingKey": "",
+        "exchangeDurable": false,
+        "queueName": "ems_queue_scale",
+        "queueExclusive": false,
+        "queueDurable": true,
+        "queueAutoDelete": false,
+        "headers": "{}",
+        "x": 430,
+        "y": 760,
+        "wires": [
+            [
+                "pg_query_scale",
+                "4fad884376c86017"
+            ]
+        ]
+    },
+    {
+        "id": "pg_query_scale",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "Scale Query",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_scale_line3 (created_date, created_time, instrument_code, snr_unit, batch_number, time_series, weight_value, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)\";\n\n// UBAH BARIS INI: dari msg.payload menjadi msg.params\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.instrument_code,\n    data.snr_unit,\n    data.batch_number,\n    data.time_series,\n    data.weight_value,\n    data.status\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 760,
+        "wires": [
+            [
+                "debug_pg",
+                "13ac28a8d030530c"
+            ]
+        ]
+    },
+    {
+        "id": "debug_pg",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "Debug Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "4fad884376c86017",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "Queue_Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "13ac28a8d030530c",
+        "type": "postgresql",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "ems_saka",
+        "query": "",
+        "postgreSQLConfig": "7df7d630690f4e21",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 850,
+        "y": 700,
+        "wires": [
+            [
+                "465958bb0cbabfbc"
+            ]
+        ]
+    },
+    {
+        "id": "465958bb0cbabfbc",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "g": "568f007818cbace4",
+        "name": "DB_Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "1d660dc3f59a45b3",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-node-mysql": "3.0.3",
+            "@meowwolf/node-red-contrib-amqp": "2.4.2",
+            "node-red-contrib-postgresql": "0.16.2"
+        }
+    }
+]
