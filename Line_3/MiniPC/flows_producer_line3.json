@@ -323,7 +323,7 @@
         "z": "60fec81f96309e5d",
         "g": "840b6e718f6b5c67",
         "name": "Scale_Debug",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -908,7 +908,7 @@
         "wires": []
     },
     {
-        "id": "91423728160f8fc6",
+        "id": "d6a12b04688613f8",
         "type": "global-config",
         "env": [],
         "modules": {

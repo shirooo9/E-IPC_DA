@@ -28,6 +28,25 @@
         "h": 814
     },
     {
+        "id": "3afc7599b6ecb755",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "name": "Line 2",
+        "style": {
+            "stroke": "#ffff00",
+            "fill": "#ffffff",
+            "label": true,
+            "label-position": "n"
+        },
+        "nodes": [
+            "4ea30a1ad9844077"
+        ],
+        "x": 308,
+        "y": 913,
+        "w": 864,
+        "h": 254
+    },
+    {
         "id": "18abbb586b285685",
         "type": "group",
         "z": "f6f2187d.f17ca8",
@@ -110,25 +129,6 @@
         "y": 599,
         "w": 812,
         "h": 262
-    },
-    {
-        "id": "3afc7599b6ecb755",
-        "type": "group",
-        "z": "f6f2187d.f17ca8",
-        "name": "Line 2",
-        "style": {
-            "stroke": "#ffff00",
-            "fill": "#ffffff",
-            "label": true,
-            "label-position": "n"
-        },
-        "nodes": [
-            "4ea30a1ad9844077"
-        ],
-        "x": 308,
-        "y": 913,
-        "w": 864,
-        "h": 254
     },
     {
         "id": "4ea30a1ad9844077",
@@ -610,7 +610,7 @@
         "exchangeType": "direct",
         "exchangeRoutingKey": "",
         "exchangeDurable": true,
-        "queueName": "ems_queue_moisture",
+        "queueName": "queue_moisture_line3",
         "queueExclusive": false,
         "queueDurable": true,
         "queueAutoDelete": false,
@@ -637,7 +637,7 @@
         "exchangeType": "direct",
         "exchangeRoutingKey": "",
         "exchangeDurable": true,
-        "queueName": "ems_queue_hardness",
+        "queueName": "queue_hardness_line3",
         "queueExclusive": false,
         "queueDurable": true,
         "queueAutoDelete": false,
@@ -657,7 +657,7 @@
         "z": "f6f2187d.f17ca8",
         "g": "568f007818cbace4",
         "name": "Moisture Query",
-        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_moisture_line3 (created_date, created_time, operator_name, instrument_code, snr_unit, product_name, batch_number, start_weight, end_weight, moisture_mc, duration_min, status, raw_data) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)\";\n\n// INI YANG KRUSIAL: Wajib pakai msg.params, BUKAN msg.payload\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.snr_unit,\n    data.product_name,\n    data.batch_number,\n    data.start_weight,\n    data.end_weight,\n    data.moisture_mc,\n    data.duration_min,\n    data.status,\n    data.raw_data\n];\n\nreturn msg;",
+        "func": "let data = msg.payload;\n\n// Hapus raw_data dan $13\nmsg.query = \"INSERT INTO ipc_moisture_line3 (created_date, created_time, operator_name, instrument_code, snr_unit, product_name, batch_number, start_weight, end_weight, moisture_mc, duration_min, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)\";\n\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.snr_unit,\n    data.product_name,\n    data.batch_number,\n    data.start_weight,\n    data.end_weight,\n    data.moisture_mc,\n    data.duration_min,\n    data.status\n];\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -708,7 +708,7 @@
         "exchangeType": "direct",
         "exchangeRoutingKey": "",
         "exchangeDurable": false,
-        "queueName": "ems_queue_scale",
+        "queueName": "queue_scale_line3",
         "queueExclusive": false,
         "queueDurable": true,
         "queueAutoDelete": false,
@@ -821,7 +821,6 @@
         "id": "c816c0982d0962d9",
         "type": "amqp-in",
         "z": "f6f2187d.f17ca8",
-        "d": true,
         "g": "4ea30a1ad9844077",
         "name": "Queue_Moisture",
         "broker": "13f8890d34b22088",
@@ -831,7 +830,7 @@
         "exchangeType": "direct",
         "exchangeRoutingKey": "",
         "exchangeDurable": true,
-        "queueName": "ems_queue_moisture",
+        "queueName": "queue_moisture_line2",
         "queueExclusive": false,
         "queueDurable": true,
         "queueAutoDelete": false,
@@ -849,10 +848,9 @@
         "id": "19aab574785bf358",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "d": true,
         "g": "4ea30a1ad9844077",
         "name": "Moisture Query",
-        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_moisture_line2 (created_date, created_time, operator_name, instrument_code, snr_unit, product_name, batch_number, start_weight, end_weight, moisture_mc, duration_min, status, raw_data) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)\";\n\n// INI YANG KRUSIAL: Wajib pakai msg.params, BUKAN msg.payload\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.snr_unit,\n    data.product_name,\n    data.batch_number,\n    data.start_weight,\n    data.end_weight,\n    data.moisture_mc,\n    data.duration_min,\n    data.status,\n    data.raw_data\n];\n\nreturn msg;",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_moisture_line2 (created_date, created_time, operator_name, instrument_code, snr_unit, product_name, batch_number, start_weight, end_weight, moisture_mc, duration_min, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)\";\n\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.snr_unit,\n    data.product_name,\n    data.batch_number,\n    data.start_weight,\n    data.end_weight,\n    data.moisture_mc,\n    data.duration_min,\n    data.status\n];\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -923,7 +921,6 @@
         "id": "6f6a9417a29eb98f",
         "type": "debug",
         "z": "f6f2187d.f17ca8",
-        "d": true,
         "g": "4ea30a1ad9844077",
         "name": "Debug Output",
         "active": true,
@@ -942,7 +939,6 @@
         "id": "2b0e445950b7020c",
         "type": "debug",
         "z": "f6f2187d.f17ca8",
-        "d": true,
         "g": "4ea30a1ad9844077",
         "name": "Queue_Debug",
         "active": true,
@@ -961,7 +957,6 @@
         "id": "089394fde93129e1",
         "type": "postgresql",
         "z": "f6f2187d.f17ca8",
-        "d": true,
         "g": "4ea30a1ad9844077",
         "name": "ems_saka",
         "query": "",
@@ -981,7 +976,6 @@
         "id": "39966ca5d118c20c",
         "type": "debug",
         "z": "f6f2187d.f17ca8",
-        "d": true,
         "g": "4ea30a1ad9844077",
         "name": "DB_Debug",
         "active": true,
@@ -997,7 +991,7 @@
         "wires": []
     },
     {
-        "id": "c5cebd5ee260a75c",
+        "id": "c296b4dd100b55c6",
         "type": "global-config",
         "env": [],
         "modules": {

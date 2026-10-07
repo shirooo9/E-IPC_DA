@@ -49,11 +49,12 @@
             "fa3d0466483931ea",
             "dcdb384ae7a70359",
             "d67dae7aeebe5303",
-            "858bf5ce2d923732"
+            "fe2870f25657a3e8",
+            "939b8d475caa2da6"
         ],
         "x": 254,
         "y": 699,
-        "w": 812,
+        "w": 932,
         "h": 202
     },
     {
@@ -158,7 +159,7 @@
         "name": "",
         "host": "10.127.17.16",
         "port": 5672,
-        "vhost": "",
+        "vhost": "/",
         "tls": false,
         "credsFromSettings": false
     },
@@ -392,7 +393,7 @@
         "z": "ffceba5a227c1800",
         "g": "4f1606e096e08d50",
         "name": "Parsing_MoistureAnalyzer",
-        "func": "let buffer = context.get('struk_buffer') || \"\";\nlet rawLine = msg.payload.toString();\n\n// Bersihkan karakter aneh (seperti simbol derajat)\nrawLine = rawLine.replace(/\\uFFFD/g, '°');\n\n// Tambahkan baris masuk ke buffer beserta enter (\\n)\nbuffer += rawLine + \"\\n\";\ncontext.set('struk_buffer', buffer);\n\n// 1. Trigger dikembalikan ke END\nif (rawLine.includes(\"---------- END ---------\")) {\n    let fullText = buffer;\n    context.set('struk_buffer', \"\"); // Kosongkan memori untuk tes berikutnya\n\n    // 2. JARING PENGAMAN: Cegah \"Ghost Trigger\" (Data Hantu)\n    if (!fullText.includes(\"Type\") || !fullText.includes(\"Dry Weight\")) {\n        return null;\n    }\n\n    const extract = (regex) => {\n        let match = fullText.match(regex);\n        return match ? match[1].trim() : null;\n    };\n\n    // 3. Ekstraksi Data ALCOA+\n    let instrument_code = extract(/Type\\s+(.+)/) || \"HX204\";\n    let snr_unit = extract(/SNR\\(Drying Unit\\)\\s*\\n\\s+(.+)/);\n    let operator_name = extract(/User Name\\s+(.+)/);\n\n    let product_name = extract(/ID1:\\s*SAMPLE NAME\\s*\\n\\s+(.+)/);\n    let batchNo = extract(/ID2:\\s*BATCH\\/LOT NO\\.\\s*\\n\\s+(.+)/);\n\n    // Tangkap Start Weight (Ambil yang paling bawah/terakhir karena ada 2 baris)\n    let startWeights = [...fullText.matchAll(/Start Weight\\s+([0-9.]+)\\s*g/g)];\n    let start_weight = startWeights.length > 0 ? parseFloat(startWeights[startWeights.length - 1][1]) : null;\n\n    let end_weight = parseFloat(extract(/Dry Weight\\s+([0-9.]+)\\s*g/));\n    let duration_min = extract(/Total time\\s+([0-9:]+\\s*min)/);\n\n    let moisture_mc = parseFloat(extract(/End Result\\s+([0-9.]+)\\s*%MC/));\n\n    // Status alat (Passed -> MS, Failed -> TMS)\n    let rawStatus = extract(/Meas\\.\\s*Status\\s+(.+)/);\n    let finalStatus = (rawStatus && rawStatus.toUpperCase() === 'FAILED') ? 'TMS' : 'MS';\n\n    // 4. Generate Date & Time Real-time (Sistem Server)\n    let now = new Date();\n    let created_date = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');\n    let created_time = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ':' + String(now.getSeconds()).padStart(2, '0');\n\n    // 5. Susun JSON ke payload\n    msg.payload = {\n        created_date: created_date,\n        created_time: created_time,\n        operator_name: operator_name,\n        instrument_code: instrument_code,\n        snr_unit: snr_unit,\n        product_name: product_name,\n        batch_number: batchNo,\n        start_weight: start_weight,\n        end_weight: end_weight,\n        moisture_mc: moisture_mc,\n        duration_min: duration_min,\n        status: finalStatus,\n        raw_data: fullText.trim()\n    };\n\n    return msg;\n}\n\n// Jika belum ketemu kata \"END\", jangan kirim apa-apa\nreturn null;",
+        "func": "let buffer = context.get('struk_buffer') || \"\";\nlet rawLine = msg.payload.toString();\n\n// Bersihkan karakter aneh (seperti simbol derajat)\nrawLine = rawLine.replace(/\\uFFFD/g, '°');\n\n// Tambahkan baris masuk ke buffer beserta enter (\\n)\nbuffer += rawLine + \"\\n\";\ncontext.set('struk_buffer', buffer);\n\n// 1. Trigger dikembalikan ke END\nif (rawLine.includes(\"---------- END ---------\")) {\n    let fullText = buffer;\n    context.set('struk_buffer', \"\"); // Kosongkan memori untuk tes berikutnya\n\n    // 2. JARING PENGAMAN: Cegah \"Ghost Trigger\" (Data Hantu)\n    if (!fullText.includes(\"Type\") || !fullText.includes(\"Dry Weight\")) {\n        return null;\n    }\n\n    const extract = (regex) => {\n        let match = fullText.match(regex);\n        return match ? match[1].trim() : null;\n    };\n\n    // 3. Ekstraksi Data ALCOA+\n    let instrument_code = extract(/Type\\s+(.+)/) || \"HX204\";\n    let snr_unit = extract(/SNR\\(Drying Unit\\)\\s*\\n\\s+(.+)/);\n    let operator_name = extract(/User Name\\s+(.+)/);\n\n    let product_name = extract(/ID1:\\s*SAMPLE NAME\\s*\\n\\s+(.+)/);\n    let batchNo = extract(/ID2:\\s*BATCH\\/LOT NO\\.?\\s*\\n\\s+(.+)/);\n\n    // Tangkap Start Weight (Ambil yang paling bawah/terakhir karena ada 2 baris)\n    let startWeights = [...fullText.matchAll(/Start Weight\\s+([0-9.]+)\\s*g/g)];\n    let start_weight = startWeights.length > 0 ? parseFloat(startWeights[startWeights.length - 1][1]) : null;\n\n    let end_weight = parseFloat(extract(/Dry Weight\\s+([0-9.]+)\\s*g/));\n    let duration_min = extract(/Total time\\s+([0-9:]+\\s*min)/);\n\n    let moisture_mc = parseFloat(extract(/End Result\\s+([0-9.]+)\\s*%MC/));\n\n    // Status alat (Passed -> MS, Failed -> TMS)\n    let rawStatus = extract(/Meas\\.\\s*Status\\s+(.+)/);\n    let finalStatus = (rawStatus && rawStatus.toUpperCase() === 'FAILED') ? 'TMS' : 'MS';\n\n    // 4. Generate Date & Time Real-time (Sistem Server)\n    let now = new Date();\n    let created_date = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');\n    let created_time = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ':' + String(now.getSeconds()).padStart(2, '0');\n\n    // 5. Susun JSON ke payload\n    msg.payload = {\n        created_date: created_date,\n        created_time: created_time,\n        operator_name: operator_name,\n        instrument_code: instrument_code,\n        snr_unit: snr_unit,\n        product_name: product_name,\n        batch_number: batchNo,\n        start_weight: start_weight,\n        end_weight: end_weight,\n        moisture_mc: moisture_mc,\n        duration_min: duration_min,\n        status: finalStatus,\n        raw_data: fullText.trim()\n    };\n\n    return msg;\n}\n\n// Jika belum ketemu kata \"END\", jangan kirim apa-apa\nreturn null;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -404,7 +405,8 @@
         "wires": [
             [
                 "d67dae7aeebe5303",
-                "858bf5ce2d923732"
+                "fe2870f25657a3e8",
+                "939b8d475caa2da6"
             ]
         ]
     },
@@ -424,25 +426,6 @@
         "statusType": "auto",
         "x": 880,
         "y": 740,
-        "wires": []
-    },
-    {
-        "id": "858bf5ce2d923732",
-        "type": "amqp-out",
-        "z": "ffceba5a227c1800",
-        "g": "4f1606e096e08d50",
-        "name": "",
-        "broker": "b1ae76e8d4ba96b8",
-        "exchangeName": "amq.topic",
-        "exchangeType": "topic",
-        "exchangeRoutingKey": "ipc.line2.moisture",
-        "exchangeRoutingKeyType": "str",
-        "exchangeDurable": true,
-        "amqpProperties": "{ \"headers\": {} }",
-        "rpcTimeoutMilliseconds": 3000,
-        "outputs": 0,
-        "x": 920,
-        "y": 800,
         "wires": []
     },
     {
@@ -544,7 +527,44 @@
         "wires": []
     },
     {
-        "id": "c34fe176e1c5d52e",
+        "id": "fe2870f25657a3e8",
+        "type": "file",
+        "z": "ffceba5a227c1800",
+        "g": "4f1606e096e08d50",
+        "name": "",
+        "filename": "/home/engineering2/Temp_Moisture_Line2.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 980,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "939b8d475caa2da6",
+        "type": "amqp-out",
+        "z": "ffceba5a227c1800",
+        "g": "4f1606e096e08d50",
+        "name": "",
+        "broker": "b1ae76e8d4ba96b8",
+        "exchangeName": "amq.topic",
+        "exchangeType": "topic",
+        "exchangeRoutingKey": "ipc.line2.moisture",
+        "exchangeRoutingKeyType": "str",
+        "exchangeDurable": true,
+        "amqpProperties": "{ \"headers\": {} }",
+        "rpcTimeoutMilliseconds": 3000,
+        "outputs": 0,
+        "x": 920,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "fc45d24265f70be1",
         "type": "global-config",
         "env": [],
         "modules": {
