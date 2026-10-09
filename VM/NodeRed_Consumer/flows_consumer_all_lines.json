@@ -19,13 +19,12 @@
         },
         "nodes": [
             "18abbb586b285685",
-            "37b33711066aeb79",
             "568f007818cbace4"
         ],
-        "x": 308,
-        "y": 73,
+        "x": 348,
+        "y": 53,
         "w": 864,
-        "h": 814
+        "h": 594
     },
     {
         "id": "3afc7599b6ecb755",
@@ -41,8 +40,8 @@
         "nodes": [
             "4ea30a1ad9844077"
         ],
-        "x": 308,
-        "y": 913,
+        "x": 348,
+        "y": 673,
         "w": 864,
         "h": 254
     },
@@ -72,32 +71,10 @@
             "c1b9fda50fbeda5c",
             "9571bbcdd2cd942c"
         ],
-        "x": 334,
-        "y": 319,
+        "x": 374,
+        "y": 79,
         "w": 792,
         "h": 262
-    },
-    {
-        "id": "37b33711066aeb79",
-        "type": "group",
-        "z": "f6f2187d.f17ca8",
-        "g": "e0cfaa779559f17e",
-        "name": "",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "f61396b4c29f0877",
-            "f46e3420aebc47d7",
-            "c2f059d3caf9f70d",
-            "504de7385f7bca1b",
-            "099c4473a0e5f682",
-            "763f5fc0317946e5"
-        ],
-        "x": 334,
-        "y": 99,
-        "w": 712,
-        "h": 202
     },
     {
         "id": "568f007818cbace4",
@@ -125,8 +102,8 @@
             "13ac28a8d030530c",
             "465958bb0cbabfbc"
         ],
-        "x": 334,
-        "y": 599,
+        "x": 374,
+        "y": 359,
         "w": 812,
         "h": 262
     },
@@ -154,8 +131,8 @@
             "089394fde93129e1",
             "39966ca5d118c20c"
         ],
-        "x": 334,
-        "y": 939,
+        "x": 374,
+        "y": 699,
         "w": 812,
         "h": 202
     },
@@ -267,64 +244,10 @@
         "g": "18abbb586b285685",
         "mydb": "0c36f517f3138191",
         "name": "",
-        "x": 990,
-        "y": 440,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f61396b4c29f0877",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "g": "37b33711066aeb79",
-        "name": "Buat tabel SQL",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 460,
+        "x": 1030,
         "y": 200,
         "wires": [
-            [
-                "f46e3420aebc47d7",
-                "c2f059d3caf9f70d",
-                "504de7385f7bca1b",
-                "099c4473a0e5f682"
-            ]
-        ]
-    },
-    {
-        "id": "f46e3420aebc47d7",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "g": "37b33711066aeb79",
-        "name": "Create_HardnessTable",
-        "func": "msg.topic = `\n    CREATE TABLE IF NOT EXISTS ipc_hardness_line3 (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        created_date DATE,\n        created_time TIME,\n        operator_name VARCHAR(50),\n        instrument_code VARCHAR(100),\n        product_name VARCHAR(100),\n        method_name VARCHAR(50),\n        batch_number VARCHAR(50),\n        time_series INT,\n        hardness_kp FLOAT,\n        diameter_mm FLOAT,\n        thickness_mm FLOAT,\n        status VARCHAR(10) DEFAULT 'N'\n    );\n`;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 140,
-        "wires": [
-            [
-                "763f5fc0317946e5"
-            ]
+            []
         ]
     },
     {
@@ -341,8 +264,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 450,
-        "y": 360,
+        "x": 490,
+        "y": 120,
         "wires": [
             [
                 "39081536c026e2ae"
@@ -362,89 +285,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 720,
-        "y": 360,
+        "x": 760,
+        "y": 120,
         "wires": [
             [
                 "933b73d4960562c6",
                 "9571bbcdd2cd942c"
             ]
-        ]
-    },
-    {
-        "id": "c2f059d3caf9f70d",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "g": "37b33711066aeb79",
-        "name": "Create_MoistureTable",
-        "func": "msg.topic = `\n    CREATE TABLE IF NOT EXISTS ipc_moisture_line3 (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        created_date DATE NOT NULL,\n        created_time TIME NOT NULL,\n        operator_name VARCHAR(50),\n        instrument_code VARCHAR(50),\n        snr_unit VARCHAR(50),\n        product_name VARCHAR(100),\n        batch_number VARCHAR(50),\n        start_weight FLOAT,\n        end_weight FLOAT,\n        moisture_mc FLOAT,\n        duration_min VARCHAR(20),\n        status VARCHAR(10),\n        raw_data TEXT\n    );\n`;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 180,
-        "wires": [
-            [
-                "763f5fc0317946e5"
-            ]
-        ]
-    },
-    {
-        "id": "504de7385f7bca1b",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "g": "37b33711066aeb79",
-        "name": "Create_ScaleTable",
-        "func": "msg.topic = `\n    CREATE TABLE IF NOT EXISTS ipc_scale_line3 (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        created_date DATE NOT NULL,\n        created_time TIME NOT NULL,\n        instrument_code VARCHAR(50),\n        snr_unit VARCHAR(50),\n        batch_number VARCHAR(50),\n        time_series INT,\n        weight_value FLOAT,\n        status VARCHAR(10) DEFAULT 'N'\n    );\n`;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 710,
-        "y": 220,
-        "wires": [
-            [
-                "763f5fc0317946e5"
-            ]
-        ]
-    },
-    {
-        "id": "099c4473a0e5f682",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "g": "37b33711066aeb79",
-        "name": "Create_DisintegrationTable",
-        "func": "",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 740,
-        "y": 260,
-        "wires": [
-            [
-                "763f5fc0317946e5"
-            ]
-        ]
-    },
-    {
-        "id": "763f5fc0317946e5",
-        "type": "mysql",
-        "z": "f6f2187d.f17ca8",
-        "g": "37b33711066aeb79",
-        "mydb": "0c36f517f3138191",
-        "name": "",
-        "x": 970,
-        "y": 200,
-        "wires": [
-            []
         ]
     },
     {
@@ -461,8 +308,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 430,
-        "y": 420,
+        "x": 470,
+        "y": 180,
         "wires": [
             [
                 "9c5c16d3f62c7fe9"
@@ -482,8 +329,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
-        "y": 420,
+        "x": 750,
+        "y": 180,
         "wires": [
             [
                 "933b73d4960562c6",
@@ -505,8 +352,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 440,
-        "y": 480,
+        "x": 480,
+        "y": 240,
         "wires": [
             [
                 "8e0a35bb10782053"
@@ -526,8 +373,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 720,
-        "y": 480,
+        "x": 760,
+        "y": 240,
         "wires": [
             [
                 "933b73d4960562c6",
@@ -549,8 +396,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 460,
-        "y": 540,
+        "x": 500,
+        "y": 300,
         "wires": [
             [
                 "c1b9fda50fbeda5c"
@@ -570,8 +417,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 540,
+        "x": 770,
+        "y": 300,
         "wires": [
             [
                 "933b73d4960562c6",
@@ -593,8 +440,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1000,
-        "y": 360,
+        "x": 1040,
+        "y": 120,
         "wires": []
     },
     {
@@ -615,8 +462,8 @@
         "queueDurable": true,
         "queueAutoDelete": false,
         "headers": "{}",
-        "x": 440,
-        "y": 640,
+        "x": 480,
+        "y": 400,
         "wires": [
             [
                 "5315842b3d7a5755",
@@ -642,8 +489,8 @@
         "queueDurable": true,
         "queueAutoDelete": false,
         "headers": "{}",
-        "x": 440,
-        "y": 700,
+        "x": 480,
+        "y": 460,
         "wires": [
             [
                 "effeabf9ec3db857",
@@ -664,8 +511,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 640,
+        "x": 680,
+        "y": 400,
         "wires": [
             [
                 "debug_pg",
@@ -686,8 +533,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 700,
+        "x": 680,
+        "y": 460,
         "wires": [
             [
                 "debug_pg",
@@ -713,8 +560,8 @@
         "queueDurable": true,
         "queueAutoDelete": false,
         "headers": "{}",
-        "x": 430,
-        "y": 760,
+        "x": 470,
+        "y": 520,
         "wires": [
             [
                 "pg_query_scale",
@@ -735,8 +582,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 760,
+        "x": 670,
+        "y": 520,
         "wires": [
             [
                 "debug_pg",
@@ -758,8 +605,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 860,
-        "y": 760,
+        "x": 900,
+        "y": 520,
         "wires": []
     },
     {
@@ -776,8 +623,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 820,
+        "x": 680,
+        "y": 580,
         "wires": []
     },
     {
@@ -791,8 +638,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 850,
-        "y": 700,
+        "x": 890,
+        "y": 460,
         "wires": [
             [
                 "465958bb0cbabfbc"
@@ -813,8 +660,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1030,
-        "y": 700,
+        "x": 1070,
+        "y": 460,
         "wires": []
     },
     {
@@ -835,8 +682,8 @@
         "queueDurable": true,
         "queueAutoDelete": false,
         "headers": "{}",
-        "x": 440,
-        "y": 980,
+        "x": 480,
+        "y": 740,
         "wires": [
             [
                 "19aab574785bf358",
@@ -857,8 +704,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 980,
+        "x": 680,
+        "y": 740,
         "wires": [
             [
                 "6f6a9417a29eb98f",
@@ -885,8 +732,8 @@
         "queueDurable": true,
         "queueAutoDelete": false,
         "headers": "{}",
-        "x": 430,
-        "y": 1040,
+        "x": 470,
+        "y": 800,
         "wires": [
             [
                 "c8fd7ca550ab126c",
@@ -908,8 +755,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 1040,
+        "x": 670,
+        "y": 800,
         "wires": [
             [
                 "6f6a9417a29eb98f",
@@ -931,8 +778,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 860,
-        "y": 1100,
+        "x": 900,
+        "y": 860,
         "wires": []
     },
     {
@@ -949,8 +796,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 1100,
+        "x": 680,
+        "y": 860,
         "wires": []
     },
     {
@@ -964,8 +811,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 850,
-        "y": 1040,
+        "x": 890,
+        "y": 800,
         "wires": [
             [
                 "39966ca5d118c20c"
@@ -986,12 +833,12 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1030,
-        "y": 1040,
+        "x": 1070,
+        "y": 800,
         "wires": []
     },
     {
-        "id": "c296b4dd100b55c6",
+        "id": "0016303423f2fdc1",
         "type": "global-config",
         "env": [],
         "modules": {

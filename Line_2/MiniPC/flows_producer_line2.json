@@ -49,12 +49,11 @@
             "fa3d0466483931ea",
             "dcdb384ae7a70359",
             "d67dae7aeebe5303",
-            "fe2870f25657a3e8",
             "939b8d475caa2da6"
         ],
         "x": 254,
         "y": 699,
-        "w": 932,
+        "w": 812,
         "h": 202
     },
     {
@@ -405,7 +404,6 @@
         "wires": [
             [
                 "d67dae7aeebe5303",
-                "fe2870f25657a3e8",
                 "939b8d475caa2da6"
             ]
         ]
@@ -527,24 +525,6 @@
         "wires": []
     },
     {
-        "id": "fe2870f25657a3e8",
-        "type": "file",
-        "z": "ffceba5a227c1800",
-        "g": "4f1606e096e08d50",
-        "name": "",
-        "filename": "/home/engineering2/Temp_Moisture_Line2.txt",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 980,
-        "y": 860,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "939b8d475caa2da6",
         "type": "amqp-out",
         "z": "ffceba5a227c1800",
@@ -564,7 +544,7 @@
         "wires": []
     },
     {
-        "id": "fc45d24265f70be1",
+        "id": "e2e242aeefe310c7",
         "type": "global-config",
         "env": [],
         "modules": {
