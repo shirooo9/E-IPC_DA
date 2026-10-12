@@ -1,19 +1,18 @@
 /*
- * CONVERTER PARALLEL TO SERIAL (PTZ AUTO 4)
- * Berdasarkan arsitektur firmware Centronics Receiver
+ * CONVERTER PARALLEL TO SERIAL
  */
  
 #include <avr/io.h>
 #include <util/delay.h>
  
-// --- MAPPING PIN ARDUINO SESUAI DENGAN KABEL DB25 ---
-// Jalur Data 8-bit: Pin A0-A5 dan Pin D6-D7 (Port C dan Port D)
-#define PAR_STROBE_BIT 3  // Disambung ke Pin D3 (Pin 1 di DB25)
-#define PAR_SEL_BIT    1  // Disambung ke Pin D9 (Pin 13 di DB25)
-#define PAR_BUSY_BIT   4  // Disambung ke Pin D4 (Pin 11 di DB25)
-#define PAR_ACK_BIT    0  // Disambung ke Pin D8 (Pin 10 di DB25)
+// --- MAPPING PIN ---
+// Jalur Data 8-bit: Pin A0-A5 dan Pin D6-D7
+#define PAR_STROBE_BIT 3  //   Pin D3 (Pin 1 di DB25)
+#define PAR_SEL_BIT    1  //   Pin D9 (Pin 13 di DB25)
+#define PAR_BUSY_BIT   4  //   Pin D4 (Pin 11 di DB25)
+#define PAR_ACK_BIT    0  //   Pin D8 (Pin 10 di DB25)
  
-// Fungsi untuk Inisialisasi Serial (Baud Rate)
+// Inisialisasi Serial (Baud Rate)
 void uart_init(uint32_t baudrate) {
     const uint32_t divisorFP1024 = (((uint32_t) (1024 / 8) * F_CPU) / baudrate);
     const uint16_t divisor = (divisorFP1024 + 512) / 1024;
