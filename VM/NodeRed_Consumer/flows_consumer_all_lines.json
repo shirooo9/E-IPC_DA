@@ -42,7 +42,7 @@
         ],
         "x": 348,
         "y": 673,
-        "w": 864,
+        "w": 1084,
         "h": 254
     },
     {
@@ -50,14 +50,10 @@
         "type": "group",
         "z": "f6f2187d.f17ca8",
         "g": "e0cfaa779559f17e",
+        "name": "",
         "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#767676"
+            "stroke": "#000000",
+            "label": true
         },
         "nodes": [
             "933b73d4960562c6",
@@ -129,11 +125,12 @@
             "6f6a9417a29eb98f",
             "2b0e445950b7020c",
             "089394fde93129e1",
-            "39966ca5d118c20c"
+            "39966ca5d118c20c",
+            "3d2078a506617634"
         ],
         "x": 374,
         "y": 699,
-        "w": 812,
+        "w": 1032,
         "h": 202
     },
     {
@@ -504,7 +501,7 @@
         "z": "f6f2187d.f17ca8",
         "g": "568f007818cbace4",
         "name": "Moisture Query",
-        "func": "let data = msg.payload;\n\n// Hapus raw_data dan $13\nmsg.query = \"INSERT INTO ipc_moisture_line3 (created_date, created_time, operator_name, instrument_code, snr_unit, product_name, batch_number, start_weight, end_weight, moisture_mc, duration_min, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)\";\n\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.snr_unit,\n    data.product_name,\n    data.batch_number,\n    data.start_weight,\n    data.end_weight,\n    data.moisture_mc,\n    data.duration_min,\n    data.status\n];\n\nreturn msg;",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_moisture_line3 (start_weight, end_weight, instrument_code, created_date, created_time, status) VALUES ($1, $2, $3, $4, $5, $6)\";\n\nmsg.params = [\n    data.start_weight,\n    data.end_weight,\n    \"MA003\",         // Hardcode Code Instrument Line 3\n    data.created_date,\n    data.created_time,\n    \"N\"              // Hardcode Status\n];\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -526,7 +523,7 @@
         "z": "f6f2187d.f17ca8",
         "g": "568f007818cbace4",
         "name": "Hardness Query",
-        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_hardness_line3 (created_date, created_time, operator_name, instrument_code, product_name, method_name, batch_number, time_series, hardness_kp, diameter_mm, thickness_mm, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)\";\n\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.product_name,\n    data.method_name,\n    data.batch_number,\n    data.time_series,\n    data.hardness_kp,\n    data.diameter_mm,\n    data.thickness_mm,\n    data.status\n];\n\nreturn msg;",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_hardness_line3 (h_value, d_value, t_value, status, code_instrument, created_date, time_insert, time_series) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)\";\n\nmsg.params = [\n    data.hardness_kp,\n    data.diameter_mm,\n    data.thickness_mm,\n    \"N\",\n    \"HD003\",\n    (data.created_date === \"\") ? null : data.created_date,\n    (data.created_time === \"\") ? null : data.created_time,\n    data.time_series\n];\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -575,7 +572,7 @@
         "z": "f6f2187d.f17ca8",
         "g": "568f007818cbace4",
         "name": "Scale Query",
-        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_scale_line3 (created_date, created_time, instrument_code, snr_unit, batch_number, time_series, weight_value, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)\";\n\n// UBAH BARIS INI: dari msg.payload menjadi msg.params\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.instrument_code,\n    data.snr_unit,\n    data.batch_number,\n    data.time_series,\n    data.weight_value,\n    data.status\n];\n\nreturn msg;",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_scale_line3 (scale_weight, status, code_instrument, created_date, units) VALUES ($1, $2, $3, $4, $5)\";\n\nlet gabungan_waktu = data.created_date + \" \" + data.created_time;\n\nmsg.params = [\n    data.weight_value,\n    \"N\",             \n    \"SC003\",        \n    gabungan_waktu,\n    \"g\"              \n];\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -606,7 +603,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 900,
-        "y": 520,
+        "y": 560,
         "wires": []
     },
     {
@@ -697,7 +694,7 @@
         "z": "f6f2187d.f17ca8",
         "g": "4ea30a1ad9844077",
         "name": "Moisture Query",
-        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_moisture_line2 (created_date, created_time, operator_name, instrument_code, snr_unit, product_name, batch_number, start_weight, end_weight, moisture_mc, duration_min, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)\";\n\nmsg.params = [\n    data.created_date,\n    data.created_time,\n    data.operator_name,\n    data.instrument_code,\n    data.snr_unit,\n    data.product_name,\n    data.batch_number,\n    data.start_weight,\n    data.end_weight,\n    data.moisture_mc,\n    data.duration_min,\n    data.status\n];\n\nreturn msg;",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_moisture_line2 (start_weight, end_weight, instrument_code, created_date, created_time, status) VALUES ($1, $2, $3, $4, $5, $6)\";\n\nmsg.params = [\n    data.start_weight,\n    data.end_weight,\n    \"MA002\",         // Hardcode Code Instrument Line 2\n    data.created_date,\n    data.created_time,\n    \"N\"              // Hardcode Status\n];\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -709,7 +706,7 @@
         "wires": [
             [
                 "6f6a9417a29eb98f",
-                "089394fde93129e1"
+                "3d2078a506617634"
             ]
         ]
     },
@@ -811,7 +808,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 890,
+        "x": 1110,
         "y": 800,
         "wires": [
             [
@@ -833,12 +830,38 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1070,
+        "x": 1290,
         "y": 800,
         "wires": []
     },
     {
-        "id": "db32b68a9565e31f",
+        "id": "3d2078a506617634",
+        "type": "delay",
+        "z": "f6f2187d.f17ca8",
+        "g": "4ea30a1ad9844077",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "15",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 740,
+        "wires": [
+            [
+                "089394fde93129e1"
+            ]
+        ]
+    },
+    {
+        "id": "42f96d714805c54b",
         "type": "global-config",
         "env": [],
         "modules": {
