@@ -572,7 +572,7 @@
         "z": "f6f2187d.f17ca8",
         "g": "568f007818cbace4",
         "name": "Scale Query",
-        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_scale_line3 (scale_weight, status, code_instrument, created_date, units) VALUES ($1, $2, $3, $4, $5)\";\n\nlet gabungan_waktu = data.created_date + \" \" + data.created_time;\n\nmsg.params = [\n    data.weight_value,\n    \"N\",             \n    \"SC003\",        \n    gabungan_waktu,\n    \"g\"              \n];\nreturn msg;",
+        "func": "let data = msg.payload;\n\nmsg.query = \"INSERT INTO ipc_scale_line3 (scale_weight, status, code_instrument, created_date, units) VALUES ($1, $2, $3, $4, $5)\";\n\nlet gabungan_waktu = data.created_date + \" \" + data.created_time;\n\nmsg.params = [\n    data.weight_value,\n    \"N\",             \n    \"SC003\",        \n    gabungan_waktu,\n    data.unit || \"g\"\n];\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -861,7 +861,7 @@
         ]
     },
     {
-        "id": "42f96d714805c54b",
+        "id": "67e1ba7a53d80d1e",
         "type": "global-config",
         "env": [],
         "modules": {
