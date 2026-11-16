@@ -115,31 +115,6 @@
         "h": 202
     },
     {
-        "id": "abefde91b2d2dc48",
-        "type": "group",
-        "z": "60fec81f96309e5d",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "15c2b25dd52c2f1b",
-            "f2596d6764a1f549",
-            "313fbd0d9c6d64a6",
-            "d2634f95abef8864",
-            "9367972edf7848e7"
-        ],
-        "x": 214,
-        "y": 1059,
-        "w": 752,
-        "h": 142
-    },
-    {
         "id": "8d8fd40ea32038ac",
         "type": "serial-port",
         "name": "AnalyticalScale_Line3",
@@ -798,8 +773,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "ipc.line3.scale",
-        "payload": "{\"created_date\":\"2026-10-01\",\"created_time\":\"12:50:51\",\"instrument_code\":\"MS204TS/00\",\"snr_unit\":\"C244160925\",\"batch_number\":\"STMXTG65764ST2\",\"time_series\":1,\"weight_value\":11.5999,\"status\":\"N\"}",
+        "topic": "",
+        "payload": "{\"created_date\":\"2026-10-01\",\"created_time\":\"12:50:55\",\"instrument_code\":\"MS204TS/00\",\"snr_unit\":\"C244160925\",\"batch_number\":\"STMXTG65764ST2\",\"time_series\":1,\"weight_value\":11.5999,\"status\":\"N\"}",
         "payloadType": "json",
         "x": 610,
         "y": 160,
@@ -810,105 +785,7 @@
         ]
     },
     {
-        "id": "15c2b25dd52c2f1b",
-        "type": "serial in",
-        "z": "60fec81f96309e5d",
-        "d": true,
-        "g": "abefde91b2d2dc48",
-        "name": "LeakTester_Line3",
-        "serial": "",
-        "x": 330,
-        "y": 1160,
-        "wires": [
-            [
-                "f2596d6764a1f549",
-                "313fbd0d9c6d64a6"
-            ]
-        ]
-    },
-    {
-        "id": "f2596d6764a1f549",
-        "type": "debug",
-        "z": "60fec81f96309e5d",
-        "d": true,
-        "g": "abefde91b2d2dc48",
-        "name": "Leak_Debug",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 550,
-        "y": 1100,
-        "wires": []
-    },
-    {
-        "id": "313fbd0d9c6d64a6",
-        "type": "function",
-        "z": "60fec81f96309e5d",
-        "d": true,
-        "g": "abefde91b2d2dc48",
-        "name": "Parsing_Leak",
-        "func": "",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 560,
-        "y": 1160,
-        "wires": [
-            [
-                "9367972edf7848e7",
-                "d2634f95abef8864"
-            ]
-        ]
-    },
-    {
-        "id": "d2634f95abef8864",
-        "type": "mqtt out",
-        "z": "60fec81f96309e5d",
-        "d": true,
-        "g": "abefde91b2d2dc48",
-        "name": "",
-        "topic": "ipc/line3/Leak",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "a89288ed06458ce9",
-        "x": 840,
-        "y": 1160,
-        "wires": []
-    },
-    {
-        "id": "9367972edf7848e7",
-        "type": "debug",
-        "z": "60fec81f96309e5d",
-        "d": true,
-        "g": "abefde91b2d2dc48",
-        "name": "ParsingDebug5",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 840,
-        "y": 1100,
-        "wires": []
-    },
-    {
-        "id": "8ef55e944a8112d1",
+        "id": "a7df3cd302d7d2d8",
         "type": "global-config",
         "env": [],
         "modules": {
